@@ -1,0 +1,84 @@
+---
+- hosts: 20.82.3.5
+  become: yes
+
+  tasks:
+    - name: UPDATE
+      apt:
+        update_cache: yes
+      become: yes  
+
+    - name: UPGRADE
+      apt: 
+        upgrade: yes
+        autoremove: yes
+        autoclean: yes
+
+    - name: INSTALL NGINX
+      apt: name=nginx state=latest
+
+    - name: START NGINX
+      service:
+        name: nginx
+        state: started
+
+    - name: COPY FILE-SITE
+      copy: src=/home/andrii/site1/index.html dest=/var/www/html/index.nginx-debian.html
+      
+
+- hosts: 51.12.55.23
+  become: yes
+
+  
+  tasks:
+    - name: UPDATE
+      apt:
+        update_cache: yes
+      become: yes
+
+    - name: UPGRADE
+      apt:
+        upgrade: yes
+        autoremove: yes
+        autoclean: yes
+
+
+    - name: INSTALL NGINX
+      apt: name=nginx state=latest
+
+    - name: START NGINX
+      service:
+        name: nginx
+        state: started
+
+    - name: COPY FILE-SITE
+      copy: src=/home/andrii/site2/index.html dest=/var/www/html/index.nginx-debian.html
+
+        
+- hosts: 4.178.105.216
+  become: yes
+
+  tasks:
+    - name: UPDATE
+      apt:
+        update_cache: yes
+      become: yes
+
+    - name: UPGRADE
+      apt:
+        upgrade: yes
+        autoremove: yes
+        autoclean: yes
+
+
+    - name: INSTALL NGINX
+      apt: name=nginx state=latest
+
+    - name: START NGINX
+      service:
+        name: nginx
+        state: started
+
+    - name: COPY FILE-SITE
+      copy: src=/home/andrii/site3/index.html dest=/var/www/html/index.nginx-debian.html
+
